@@ -48,7 +48,8 @@ class TRIS(nn.Module):
         type = args.backbone.split('-')[-1]
 
         device = "cuda" if torch.cuda.is_available() else "cpu"
-        clip_model, _ = clip.load(type, device=device, jit=False, txt_length=args.max_query_len)
+        clip_model_name = args.clip_model_path if getattr(args, "clip_model_path", None) else type
+        clip_model, _ = clip.load(clip_model_name, device=device, jit=False, txt_length=args.max_query_len)
         # clip_model = clip_model.eval().float() 
         clip_model = clip_model.float() 
         self.backbone = clip_model 

@@ -23,6 +23,8 @@ def get_parser():
     parser.add_argument("--pretrained_checkpoint",default=None,type=str,help="name of checkpoint ")
     parser.add_argument("--official_weights_dir", default="./weights/pretrained", type=str,
                         help="directory used for auto-downloaded official checkpoints")
+    parser.add_argument("--clip_model_path", default=None, type=str,
+                        help="local path to the CLIP checkpoint file, required for manual-weight mode on servers")
     
     # optimizer set
     parser.add_argument("--lr",default=0.00005,type=float,help="initial learning rate")  # 1.5e-5  

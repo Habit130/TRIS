@@ -17,7 +17,7 @@ from dataset.plantseg_dataset import PlantSegDataset
 from dataset.transform import get_transform
 from logger import create_logger
 from model.model_stage2 import TRIS, criterion
-from utils.official_assets import ensure_official_tris_checkpoint
+from utils.official_assets import require_official_clip_checkpoint, require_official_tris_checkpoint
 from utils.poly_lr_decay import PolynomialLRDecay
 from utils.util import (
     AverageMeter,
@@ -87,12 +87,11 @@ def build_eval_dataset(args, split):
 def maybe_prepare_official_checkpoint(args):
     if args.dataset != "plantseg":
         return
+    if args.clip_model_path is None:
+        args.clip_model_path = require_official_clip_checkpoint("RN50.pt", args.official_weights_dir)
     if args.resume or args.pretrained_checkpoint is not None:
         return
-    args.pretrained_checkpoint = ensure_official_tris_checkpoint(
-        "stage2_refcocog_umd.pth",
-        args.official_weights_dir,
-    )
+    args.pretrained_checkpoint = require_official_tris_checkpoint("stage2_refcocog_umd.pth", args.official_weights_dir)
 
 
 def run_validation(args, data_loader, model, local_rank=0):

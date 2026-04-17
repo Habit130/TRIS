@@ -22,13 +22,20 @@
 - 训练 / 验证 / 测试划分直接使用 `main.json` 中的 `split`
 - 文本固定使用 `caption[3]`
 
+## 手动放置官方权重
+
+- CLIP RN50
+  - 下载网址：`https://openaipublic.azureedge.net/clip/models/afeb0e10f9e5a86da6080e35cf09123aca3b358a0c3e3b6c78a7b63bc04b6762/RN50.pt`
+  - 服务器相对路径：`./weights/pretrained/RN50.pt`
+- TRIS Stage-2 warm start
+  - 下载网址：`https://github.com/fawnliu/storage/releases/download/v1.0.1/stage2_refcocog_umd.pth`
+  - 服务器相对路径：`./weights/pretrained/stage2_refcocog_umd.pth`
+
 ## 训练
 
 - 入口脚本：`scripts/train_plantseg.sh`
 - 训练主线：`train_stage2.py --dataset plantseg`
-- 模型会自动下载：
-  - OpenAI 官方 CLIP RN50 权重
-  - 官方 `stage2_refcocog_umd.pth` warm start
+- 训练前会检查上述两个本地权重文件是否存在；不存在时直接报错并给出下载网址。
 
 ## 评测
 

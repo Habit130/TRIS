@@ -15,6 +15,7 @@ CUDA_VISIBLE_DEVICES=0 python validate_plantseg.py \
     --bert_tokenizer clip \
     --backbone clip-RN50 \
     --max_query_len 77 \
+    --clip_model_path ./weights/pretrained/RN50.pt \
     --output ./weights/plantseg/stage2 \
     --resume \
     --pretrain "${checkpoint_name}" \
