@@ -15,7 +15,7 @@ dependencies:
   - pip:
       - ema-pytorch==0.2.3
       - ftfy==6.1.1
-      - opencv-python==4.8.0.76
+      - opencv-python-headless==4.8.0.76
       - pycocotools==2.0.7
       - regex==2023.8.8
       - tensorboardX==2.6.2.2

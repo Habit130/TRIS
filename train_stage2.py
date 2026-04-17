@@ -13,7 +13,6 @@ from torch.utils.data import DataLoader
 from torch.utils.data.distributed import DistributedSampler
 
 from args import get_parser
-from dataset.ReferDataset import ReferDataset
 from dataset.plantseg_dataset import PlantSegDataset
 from dataset.transform import get_transform
 from logger import create_logger
@@ -27,7 +26,6 @@ from utils.util import (
     reduce_tensor,
     save_checkpoint,
 )
-from validate import validate as validate_refer
 from validate_plantseg import validate_plantseg
 
 writer = None
@@ -44,6 +42,8 @@ def build_train_dataset(args):
             eval_mode=False,
             size=args.size,
         )
+
+    from dataset.ReferDataset import ReferDataset
 
     return ReferDataset(
         refer_data_root=args.refer_data_root,
@@ -69,6 +69,8 @@ def build_eval_dataset(args, split):
             eval_mode=True,
             size=args.size,
         )
+
+    from dataset.ReferDataset import ReferDataset
 
     return ReferDataset(
         refer_data_root=args.refer_data_root,
@@ -96,6 +98,8 @@ def maybe_prepare_official_checkpoint(args):
 def run_validation(args, data_loader, model, local_rank=0):
     if args.dataset == "plantseg":
         return validate_plantseg(args, data_loader, model, local_rank=local_rank, save_pred_masks=False)
+
+    from validate import validate as validate_refer
 
     oIoU, mIoU, hit = validate_refer(args, data_loader, model, local_rank)
     return {

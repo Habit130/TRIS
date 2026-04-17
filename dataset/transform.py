@@ -7,7 +7,6 @@ from torchvision.transforms import InterpolationMode
 import torch
 from torchvision import transforms as T
 from torchvision.transforms import functional as F
-import cv2 
 
 
 class Compose(object):
