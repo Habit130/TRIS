@@ -1,4 +1,5 @@
 import json
+import logging
 import os
 
 import numpy as np
@@ -11,6 +12,10 @@ from dataset.plantseg_dataset import PlantSegDataset
 from dataset.transform import get_transform
 from model.model_stage2 import TRIS
 from utils.util import load_checkpoint, load_pretrained_checkpoint
+
+logging.getLogger("PIL").setLevel(logging.WARNING)
+logging.getLogger("PIL.PngImagePlugin").setLevel(logging.WARNING)
+logging.getLogger("PIL.TiffImagePlugin").setLevel(logging.WARNING)
 
 
 def _safe_div(numerator, denominator):

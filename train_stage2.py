@@ -1,4 +1,5 @@
 import datetime
+import logging
 import os
 import shutil
 import time
@@ -29,6 +30,10 @@ from utils.util import (
 from validate_plantseg import validate_plantseg
 
 writer = None
+
+logging.getLogger("PIL").setLevel(logging.WARNING)
+logging.getLogger("PIL.PngImagePlugin").setLevel(logging.WARNING)
+logging.getLogger("PIL.TiffImagePlugin").setLevel(logging.WARNING)
 
 
 def build_train_dataset(args):
