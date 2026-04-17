@@ -6,7 +6,7 @@ def get_parser():
     )
     # Dataset
     parser.add_argument('--dataset', default='refcoco', 
-                    help='choose one of the following datasets: refcoco, refcoco+, refcocog, refcocog_umd')
+                    help='choose one of the following datasets: refcoco, refcoco+, refcocog, refcocog_umd, plantseg')
     # parser.add_argument('--dataset_root',default='./data',help='split to run test')
     parser.add_argument("--max_query_len",default=20,type=int)
     parser.add_argument('--negative_samples', default=0, type=int)
@@ -15,10 +15,14 @@ def get_parser():
     parser.add_argument('--bert_tokenizer',  default='clip')
     # REFER
     parser.add_argument('--refer_data_root', default='../../data/', help='REFER dataset root directory')
+    parser.add_argument('--plantseg_root', default='../plantseg', help='PlantSeg dataset root directory')
+    parser.add_argument('--caption_index', default=3, type=int, help='caption index used by PlantSeg samples')
     parser.add_argument('--splitBy', default='unc', help='split By')
     parser.add_argument('--spilt',default='val',help='split to run test')
 
     parser.add_argument("--pretrained_checkpoint",default=None,type=str,help="name of checkpoint ")
+    parser.add_argument("--official_weights_dir", default="./weights/pretrained", type=str,
+                        help="directory used for auto-downloaded official checkpoints")
     
     # optimizer set
     parser.add_argument("--lr",default=0.00005,type=float,help="initial learning rate")  # 1.5e-5  
@@ -87,6 +91,9 @@ def get_parser():
     parser.add_argument("--cam_save_dir", default=None, type=str)
     parser.add_argument("--name_save_dir", default=None, type=str)
     parser.add_argument("--save_cam",action="store_true", default=False)
+    parser.add_argument("--save_pred_masks", action="store_true", default=False)
+    parser.add_argument("--mask_output_dir", default="./output/plantseg/test_masks/ann", type=str)
+    parser.add_argument("--metrics_output", default="./output/plantseg/eval/test_metrics.json", type=str)
 
 
     parser.add_argument("--mode", default='clip', type=str)

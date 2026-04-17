@@ -1,0 +1,23 @@
+name: tris-plantseg-cu118
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - numpy
+  - pillow
+  - matplotlib
+  - pytorch
+  - torchvision
+  - pytorch-cuda=11.8
+  - pip:
+      - ema-pytorch==0.2.3
+      - ftfy==6.1.1
+      - opencv-python==4.8.0.76
+      - pycocotools==2.0.7
+      - regex==2023.8.8
+      - tensorboardX==2.6.2.2
+      - termcolor==2.3.0
+      - tqdm==4.66.1

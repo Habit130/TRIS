@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+
+logs/
+output/
+weights/
+
+.cache/
+.pytest_cache/
+
+CLIP/clip/__pycache__/
