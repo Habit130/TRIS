@@ -19,6 +19,7 @@ CUDA_VISIBLE_DEVICES=0 python validate_plantseg.py \
     --output ./weights/plantseg/stage2 \
     --resume \
     --pretrain "${checkpoint_name}" \
+    --eval \
     --save_pred_masks \
     --mask_output_dir ./output/plantseg/test_masks/ann \
     --metrics_output ./output/plantseg/eval/test_metrics.json \

@@ -114,6 +114,7 @@ def main(args):
     model_without_ddp = model.module
 
     if args.resume and args.pretrain is not None:
+        args.eval = True
         load_checkpoint(args, model_without_ddp)
     elif args.pretrained_checkpoint is not None:
         load_pretrained_checkpoint(args.pretrained_checkpoint, model_without_ddp)

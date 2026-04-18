@@ -87,7 +87,14 @@ def load_checkpoint(args,model_without_ddp,optimizer=None,lr_scheduler=None,logg
     msg=model_without_ddp.load_state_dict(checkpoint['model'],strict=False)
     # print(msg)
     # resume not evaluation
-    if not args.eval and 'optimizer' in checkpoint and 'lr_scheduler' in checkpoint and 'epoch' in checkpoint:
+    if (
+        not args.eval
+        and optimizer is not None
+        and lr_scheduler is not None
+        and 'optimizer' in checkpoint
+        and 'lr_scheduler' in checkpoint
+        and 'epoch' in checkpoint
+    ):
         optimizer.load_state_dict(checkpoint['optimizer'])
         lr_scheduler.load_state_dict(checkpoint['lr_scheduler'])
         args.start_epoch = checkpoint['epoch'] + 1 
